@@ -5,7 +5,7 @@ A static website for generating and customizing `.git/config` files.
  - Create and edit aliases
  - Load an existing options file
  - Download and install your config to
-    - `~/.git/gitconfig` for per-user options
-    - `<repo>/.git/gitconfig` for per-repo options
+    - `~/.gitconfig` for per-user options
+    - `<repo>/.git/config` for per-repo options
 
 [View the site](https://ralian.github.io/gitconfig-generator/) on Github Pages.
