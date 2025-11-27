@@ -1342,6 +1342,295 @@
     "type": "text",
     "default": null,
     "description": "Even when version sort is used in git-tag, tagnames with the same base version but different suffixes are still sorted lexicographically. This variable can be specified to determine the sorting order of tags with different suffixes."
+  },
+  {
+    "section": "color",
+    "subsection": "diff",
+    "name": "meta",
+    "displayName": "Meta",
+    "type": "color",
+    "default": null,
+    "description": "Color for diff meta information (file headers, hunk headers, etc.)"
+  },
+  {
+    "section": "color",
+    "subsection": "diff",
+    "name": "frag",
+    "displayName": "Frag",
+    "type": "color",
+    "default": null,
+    "description": "Color for hunk header lines in diffs"
+  },
+  {
+    "section": "color",
+    "subsection": "diff",
+    "name": "old",
+    "displayName": "Old",
+    "type": "color",
+    "default": null,
+    "description": "Color for removed lines in diffs"
+  },
+  {
+    "section": "color",
+    "subsection": "diff",
+    "name": "new",
+    "displayName": "New",
+    "type": "color",
+    "default": null,
+    "description": "Color for added lines in diffs"
+  },
+  {
+    "section": "color",
+    "subsection": "diff",
+    "name": "commit",
+    "displayName": "Commit",
+    "type": "color",
+    "default": null,
+    "description": "Color for commit headers in diffs"
+  },
+  {
+    "section": "color",
+    "subsection": "diff",
+    "name": "whitespace",
+    "displayName": "Whitespace",
+    "type": "color",
+    "default": null,
+    "description": "Color for whitespace errors in diffs"
+  },
+  {
+    "section": "color",
+    "subsection": "diff",
+    "name": "context",
+    "displayName": "Context",
+    "type": "color",
+    "default": null,
+    "description": "Color for context lines in diffs"
+  },
+  {
+    "section": "color",
+    "subsection": "diff",
+    "name": "plain",
+    "displayName": "Plain",
+    "type": "color",
+    "default": null,
+    "description": "Color for plain text in diffs"
+  },
+  {
+    "section": "color",
+    "subsection": "status",
+    "name": "header",
+    "displayName": "Header",
+    "type": "color",
+    "default": null,
+    "description": "Color for status header lines"
+  },
+  {
+    "section": "color",
+    "subsection": "status",
+    "name": "added",
+    "displayName": "Added",
+    "type": "color",
+    "default": null,
+    "description": "Color for added files in status"
+  },
+  {
+    "section": "color",
+    "subsection": "status",
+    "name": "changed",
+    "displayName": "Changed",
+    "type": "color",
+    "default": null,
+    "description": "Color for changed files in status"
+  },
+  {
+    "section": "color",
+    "subsection": "status",
+    "name": "untracked",
+    "displayName": "Untracked",
+    "type": "color",
+    "default": null,
+    "description": "Color for untracked files in status"
+  },
+  {
+    "section": "color",
+    "subsection": "status",
+    "name": "branch",
+    "displayName": "Branch",
+    "type": "color",
+    "default": null,
+    "description": "Color for branch name in status"
+  },
+  {
+    "section": "color",
+    "subsection": "status",
+    "name": "nobranch",
+    "displayName": "No Branch",
+    "type": "color",
+    "default": null,
+    "description": "Color for 'no branch' indicator in status"
+  },
+  {
+    "section": "color",
+    "subsection": "status",
+    "name": "unmerged",
+    "displayName": "Unmerged",
+    "type": "color",
+    "default": null,
+    "description": "Color for unmerged files in status"
+  },
+  {
+    "section": "color",
+    "subsection": "branch",
+    "name": "current",
+    "displayName": "Current",
+    "type": "color",
+    "default": null,
+    "description": "Color for current branch"
+  },
+  {
+    "section": "color",
+    "subsection": "branch",
+    "name": "local",
+    "displayName": "Local",
+    "type": "color",
+    "default": null,
+    "description": "Color for local branches"
+  },
+  {
+    "section": "color",
+    "subsection": "branch",
+    "name": "remote",
+    "displayName": "Remote",
+    "type": "color",
+    "default": null,
+    "description": "Color for remote branches"
+  },
+  {
+    "section": "color",
+    "subsection": "branch",
+    "name": "plain",
+    "displayName": "Plain",
+    "type": "color",
+    "default": null,
+    "description": "Color for plain branch names"
+  },
+  {
+    "section": "color",
+    "subsection": "interactive",
+    "name": "header",
+    "displayName": "Header",
+    "type": "color",
+    "default": null,
+    "description": "Color for interactive header"
+  },
+  {
+    "section": "color",
+    "subsection": "interactive",
+    "name": "help",
+    "displayName": "Help",
+    "type": "color",
+    "default": null,
+    "description": "Color for interactive help text"
+  },
+  {
+    "section": "color",
+    "subsection": "interactive",
+    "name": "prompt",
+    "displayName": "Prompt",
+    "type": "color",
+    "default": null,
+    "description": "Color for interactive prompts"
+  },
+  {
+    "section": "color",
+    "subsection": "interactive",
+    "name": "error",
+    "displayName": "Error",
+    "type": "color",
+    "default": null,
+    "description": "Color for interactive error messages"
+  },
+  {
+    "section": "color",
+    "subsection": "interactive",
+    "name": "reset",
+    "displayName": "Reset",
+    "type": "color",
+    "default": null,
+    "description": "Color for interactive reset"
+  },
+  {
+    "section": "color",
+    "subsection": "grep",
+    "name": "context",
+    "displayName": "Context",
+    "type": "color",
+    "default": null,
+    "description": "Color for grep context lines"
+  },
+  {
+    "section": "color",
+    "subsection": "grep",
+    "name": "filename",
+    "displayName": "Filename",
+    "type": "color",
+    "default": null,
+    "description": "Color for grep filenames"
+  },
+  {
+    "section": "color",
+    "subsection": "grep",
+    "name": "function",
+    "displayName": "Function",
+    "type": "color",
+    "default": null,
+    "description": "Color for grep function names"
+  },
+  {
+    "section": "color",
+    "subsection": "grep",
+    "name": "lineNumber",
+    "configName": "lineNumber",
+    "displayName": "Line Number",
+    "type": "color",
+    "default": null,
+    "description": "Color for grep line numbers"
+  },
+  {
+    "section": "color",
+    "subsection": "grep",
+    "name": "column",
+    "displayName": "Column",
+    "type": "color",
+    "default": null,
+    "description": "Color for grep column numbers"
+  },
+  {
+    "section": "color",
+    "subsection": "grep",
+    "name": "match",
+    "displayName": "Match",
+    "type": "color",
+    "default": null,
+    "description": "Color for grep match text"
+  },
+  {
+    "section": "color",
+    "subsection": "grep",
+    "name": "selected",
+    "displayName": "Selected",
+    "type": "color",
+    "default": null,
+    "description": "Color for grep selected text"
+  },
+  {
+    "section": "color",
+    "subsection": "grep",
+    "name": "separator",
+    "displayName": "Separator",
+    "type": "color",
+    "default": null,
+    "description": "Color for grep separators"
   }
 ]
 

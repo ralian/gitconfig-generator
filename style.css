@@ -202,6 +202,82 @@ header code {
     display: none;
 }
 
+.subsection-header {
+    color: #00177c;
+    margin: 20px 0 15px 0;
+    font-size: 1.2em;
+    font-weight: 600;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.color-picker-container {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 25%;
+}
+
+.color-picker-button {
+    border-radius: 6px;
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.color-picker-button:not(.default-state):hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.color-picker-button.default-state {
+    cursor: not-allowed;
+}
+
+.color-picker-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+    background: white;
+    border: 2px solid #00177c;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    max-height: 400px;
+    overflow-y: auto;
+    max-width: 500px;
+}
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    gap: 2px;
+    width: 100%;
+}
+
+.color-swatch {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.color-swatch:hover {
+    transform: scale(1.2);
+    border-color: #00177c;
+    border-width: 2px;
+    z-index: 10;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
 .form-group {
     margin-bottom: 15px;
     display: flex;

@@ -1,10 +1,12 @@
 // State management
 let aliasIndex = 1;
 let configOptions = [];
+let terminalColors = [];
 
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
     await loadConfigOptions();
+    await loadTerminalColors();
     generateForm();
     initializeEventListeners();
     updateOutput();
@@ -21,23 +23,34 @@ async function loadConfigOptions() {
     }
 }
 
+// Load terminal colors from JSON
+async function loadTerminalColors() {
+    const response = await fetch('colors.json');
+    terminalColors = await response.json();
+}
+
 // Generate form from config options
 function generateForm() {
     const container = document.getElementById('configSections');
     container.innerHTML = '';
 
-    // Group options by section
+    // Group options by section and subsection
     const sections = {};
     configOptions.forEach(option => {
         const sectionKey = option.section;
+        const subsectionKey = option.subsection || '';
+        
         if (!sections[sectionKey]) {
-            sections[sectionKey] = [];
+            sections[sectionKey] = {};
         }
-        sections[sectionKey].push(option);
+        if (!sections[sectionKey][subsectionKey]) {
+            sections[sectionKey][subsectionKey] = [];
+        }
+        sections[sectionKey][subsectionKey].push(option);
     });
 
     // Generate sections
-    for (const [section, options] of Object.entries(sections)) {
+    for (const [section, subsections] of Object.entries(sections)) {
         const sectionEl = document.createElement('section');
         sectionEl.className = 'config-section';
         
@@ -56,10 +69,21 @@ function generateForm() {
         const contentWrapper = document.createElement('div');
         contentWrapper.className = 'section-content';
 
-        options.forEach(option => {
-            const formGroup = createFormGroup(option);
-            contentWrapper.appendChild(formGroup);
-        });
+        // Generate subsections
+        for (const [subsection, options] of Object.entries(subsections)) {
+            if (subsection) {
+                // Create subsection header
+                const subsectionHeader = document.createElement('h3');
+                subsectionHeader.className = 'subsection-header';
+                subsectionHeader.textContent = `[${section} "${subsection}"]`;
+                contentWrapper.appendChild(subsectionHeader);
+            }
+
+            options.forEach(option => {
+                const formGroup = createFormGroup(option);
+                contentWrapper.appendChild(formGroup);
+            });
+        }
 
         sectionEl.appendChild(contentWrapper);
         container.appendChild(sectionEl);
@@ -79,6 +103,7 @@ function createFormGroup(option) {
     checkbox.type = 'checkbox';
     checkbox.className = 'option-toggle';
     checkbox.dataset.section = option.section;
+    checkbox.dataset.subsection = option.subsection || '';
     checkbox.dataset.key = option.name;
     checkbox.dataset.configName = option.configName || option.name;
 
@@ -95,7 +120,74 @@ function createFormGroup(option) {
     label.appendChild(labelText);
 
     let input;
-    if (option.type === 'select') {
+    let colorPickerContainer = null;
+    
+    if (option.type === 'color') {
+        // Create color picker container
+        colorPickerContainer = document.createElement('div');
+        colorPickerContainer.className = 'color-picker-container';
+        
+        // Create the color display button
+        input = document.createElement('button');
+        input.type = 'button';
+        input.className = 'color-picker-button config-input default-state';
+        input.style.backgroundColor = '#f5f5f5';
+        input.style.border = '2px solid #e0e0e0';
+        input.style.width = '60px';
+        input.style.height = '40px';
+        input.style.cursor = 'pointer';
+        input.textContent = 'None';
+        
+        // Create color picker dropdown
+        const colorPicker = document.createElement('div');
+        colorPicker.className = 'color-picker-dropdown';
+        colorPicker.style.display = 'none';
+        
+        // Create color grid
+        const colorGrid = document.createElement('div');
+        colorGrid.className = 'color-grid';
+        
+        terminalColors.forEach((color, index) => {
+            const colorSwatch = document.createElement('div');
+            colorSwatch.className = 'color-swatch';
+            colorSwatch.style.backgroundColor = color;
+            colorSwatch.dataset.colorIndex = index;
+            colorSwatch.title = `Color ${index}: ${color}`;
+            colorSwatch.addEventListener('click', () => {
+                input.dataset.colorIndex = index;
+                input.style.backgroundColor = color;
+                input.textContent = index;
+                colorPicker.style.display = 'none';
+                checkbox.checked = true;
+                handleToggle({ target: checkbox });
+                updateOutput();
+            });
+            colorGrid.appendChild(colorSwatch);
+        });
+        
+        colorPicker.appendChild(colorGrid);
+        colorPickerContainer.appendChild(input);
+        colorPickerContainer.appendChild(colorPicker);
+        
+        // Toggle color picker on button click
+        input.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isVisible = colorPicker.style.display !== 'none';
+            // Close all other color pickers
+            document.querySelectorAll('.color-picker-dropdown').forEach(dp => {
+                dp.style.display = 'none';
+            });
+            colorPicker.style.display = isVisible ? 'none' : 'block';
+        });
+        
+        // Close color picker when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!colorPickerContainer.contains(e.target)) {
+                colorPicker.style.display = 'none';
+            }
+        });
+        
+    } else if (option.type === 'select') {
         input = document.createElement('select');
         input.className = 'config-input default-state';
         const defaultOption = document.createElement('option');
@@ -119,6 +211,7 @@ function createFormGroup(option) {
     }
 
     input.dataset.section = option.section;
+    input.dataset.subsection = option.subsection || '';
     input.dataset.key = option.name;
     input.dataset.configName = option.configName || option.name;
     input.disabled = true;
@@ -133,7 +226,11 @@ function createFormGroup(option) {
     }
 
     formGroup.appendChild(label);
-    formGroup.appendChild(input);
+    if (colorPickerContainer) {
+        formGroup.appendChild(colorPickerContainer);
+    } else {
+        formGroup.appendChild(input);
+    }
 
     // Add description below input if provided
     if (option.description) {
@@ -166,9 +263,9 @@ function initializeEventListeners() {
 
     // Input changes - use event delegation
     document.getElementById('configForm').addEventListener('input', (e) => {
-        if (e.target.classList.contains('config-input')) {
+        if (e.target.classList.contains('config-input') && !e.target.classList.contains('color-picker-button')) {
             const toggle = document.querySelector(
-                `.option-toggle[data-section="${e.target.dataset.section}"][data-key="${e.target.dataset.key}"]`
+                `.option-toggle[data-section="${e.target.dataset.section}"][data-subsection="${e.target.dataset.subsection || ''}"][data-key="${e.target.dataset.key}"]`
             );
             if (toggle && !toggle.checked) {
                 toggle.checked = true;
@@ -293,6 +390,24 @@ function parseGitConfig(content) {
             if (currentSubsection && currentSection === 'alias') {
                 config[currentSection][currentSubsection] = value;
                 currentSubsection = null;
+            } else if (currentSubsection) {
+                // Handle other subsections (e.g., color.diff, color.status)
+                if (!config[currentSection][currentSubsection]) {
+                    config[currentSection][currentSubsection] = {};
+                }
+                // Map config names back to option names if needed
+                let actualKey = key;
+                if (configOptions && configOptions.length > 0) {
+                    const option = configOptions.find(opt => 
+                        opt.section === currentSection && 
+                        (opt.subsection || '') === currentSubsection &&
+                        (opt.configName === key || opt.name === key)
+                    );
+                    if (option) {
+                        actualKey = option.name;
+                    }
+                }
+                config[currentSection][currentSubsection][actualKey] = value;
             } else {
                 // Regular key-value pair
                 // Map config names back to option names if needed
@@ -300,6 +415,7 @@ function parseGitConfig(content) {
                 if (configOptions && configOptions.length > 0) {
                     const option = configOptions.find(opt => 
                         opt.section === currentSection && 
+                        !opt.subsection &&
                         (opt.configName === key || opt.name === key)
                     );
                     if (option) {
@@ -308,7 +424,9 @@ function parseGitConfig(content) {
                         // Try converting kebab-case to camelCase (e.g., default-branch -> defaultBranch)
                         const camelKey = key.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
                         const optionByCamel = configOptions.find(opt => 
-                            opt.section === currentSection && opt.name === camelKey
+                            opt.section === currentSection && 
+                            !opt.subsection &&
+                            opt.name === camelKey
                         );
                         if (optionByCamel) {
                             actualKey = optionByCamel.name;
@@ -338,56 +456,103 @@ function populateForm(config) {
             continue;
         }
 
-        for (const [key, value] of Object.entries(values)) {
-            // Find the option that matches this key (check both name and configName)
-            const option = configOptions.find(opt => 
-                opt.section === section && 
-                (opt.name === key || opt.configName === key || 
-                 (opt.configName && opt.configName === key) ||
-                 (opt.name && opt.name.replace(/([A-Z])/g, '-$1').toLowerCase() === key))
-            );
+        // Check if this section has subsections
+        const hasSubsections = Object.values(values).some(v => typeof v === 'object' && v !== null && !Array.isArray(v));
+        
+        if (hasSubsections) {
+            // Handle subsections
+            for (const [subsection, subsectionValues] of Object.entries(values)) {
+                if (typeof subsectionValues !== 'object' || subsectionValues === null) continue;
+                
+                for (const [key, value] of Object.entries(subsectionValues)) {
+                    const option = configOptions.find(opt => 
+                        opt.section === section && 
+                        (opt.subsection || '') === subsection &&
+                        (opt.name === key || opt.configName === key)
+                    );
 
-            if (!option) {
-                // Try to find by converting key (e.g., default-branch -> defaultBranch)
-                const camelKey = key.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
-                const optionByCamel = configOptions.find(opt => 
-                    opt.section === section && opt.name === camelKey
-                );
-                if (optionByCamel) {
-                    const input = document.querySelector(
-                        `.config-input[data-section="${section}"][data-key="${optionByCamel.name}"]`
-                    );
-                    const toggle = document.querySelector(
-                        `.option-toggle[data-section="${section}"][data-key="${optionByCamel.name}"]`
-                    );
-                    if (input && toggle) {
-                        if (input.tagName === 'SELECT') {
-                            input.value = value;
-                        } else {
-                            input.value = value;
+                    if (option) {
+                        const input = document.querySelector(
+                            `.config-input[data-section="${section}"][data-subsection="${subsection}"][data-key="${option.name}"]`
+                        );
+                        const toggle = document.querySelector(
+                            `.option-toggle[data-section="${section}"][data-subsection="${subsection}"][data-key="${option.name}"]`
+                        );
+
+                        if (input && toggle) {
+                            if (option.type === 'color') {
+                                // Handle color picker
+                                const colorIndex = parseInt(value);
+                                if (!isNaN(colorIndex) && colorIndex >= 0 && colorIndex < 256) {
+                                    input.dataset.colorIndex = colorIndex;
+                                    input.style.backgroundColor = terminalColors[colorIndex];
+                                    input.textContent = colorIndex;
+                                }
+                            } else if (input.tagName === 'SELECT') {
+                                input.value = value;
+                            } else {
+                                input.value = value;
+                            }
+                            toggle.checked = true;
+                            handleToggle({ target: toggle });
                         }
-                        toggle.checked = true;
-                        handleToggle({ target: toggle });
                     }
                 }
-                continue;
             }
+        } else {
+            // Regular section without subsections
+            for (const [key, value] of Object.entries(values)) {
+                // Find the option that matches this key (check both name and configName)
+                const option = configOptions.find(opt => 
+                    opt.section === section && 
+                    !opt.subsection &&
+                    (opt.name === key || opt.configName === key || 
+                     (opt.configName && opt.configName === key) ||
+                     (opt.name && opt.name.replace(/([A-Z])/g, '-$1').toLowerCase() === key))
+                );
 
-            const input = document.querySelector(
-                `.config-input[data-section="${section}"][data-key="${option.name}"]`
-            );
-            const toggle = document.querySelector(
-                `.option-toggle[data-section="${section}"][data-key="${option.name}"]`
-            );
-
-            if (input && toggle) {
-                if (input.tagName === 'SELECT') {
-                    input.value = value;
-                } else {
-                    input.value = value;
+                if (!option) {
+                    // Try to find by converting key (e.g., default-branch -> defaultBranch)
+                    const camelKey = key.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+                    const optionByCamel = configOptions.find(opt => 
+                        opt.section === section && !opt.subsection && opt.name === camelKey
+                    );
+                    if (optionByCamel) {
+                        const input = document.querySelector(
+                            `.config-input[data-section="${section}"][data-subsection=""][data-key="${optionByCamel.name}"]`
+                        );
+                        const toggle = document.querySelector(
+                            `.option-toggle[data-section="${section}"][data-subsection=""][data-key="${optionByCamel.name}"]`
+                        );
+                        if (input && toggle) {
+                            if (input.tagName === 'SELECT') {
+                                input.value = value;
+                            } else {
+                                input.value = value;
+                            }
+                            toggle.checked = true;
+                            handleToggle({ target: toggle });
+                        }
+                    }
+                    continue;
                 }
-                toggle.checked = true;
-                handleToggle({ target: toggle });
+
+                const input = document.querySelector(
+                    `.config-input[data-section="${section}"][data-subsection=""][data-key="${option.name}"]`
+                );
+                const toggle = document.querySelector(
+                    `.option-toggle[data-section="${section}"][data-subsection=""][data-key="${option.name}"]`
+                );
+
+                if (input && toggle) {
+                    if (input.tagName === 'SELECT') {
+                        input.value = value;
+                    } else {
+                        input.value = value;
+                    }
+                    toggle.checked = true;
+                    handleToggle({ target: toggle });
+                }
             }
         }
     }
@@ -397,36 +562,53 @@ function populateForm(config) {
 function handleToggle(e) {
     const toggle = e.target;
     const section = toggle.dataset.section;
+    const subsection = toggle.dataset.subsection || '';
     const key = toggle.dataset.key;
 
     const input = document.querySelector(
-        `.config-input[data-section="${section}"][data-key="${key}"]`
+        `.config-input[data-section="${section}"][data-subsection="${subsection}"][data-key="${key}"]`
     );
     const formGroup = toggle.closest('.form-group');
 
     if (!input || !formGroup) return;
 
     // Find the option to get default value
-    const option = configOptions.find(opt => opt.section === section && opt.name === key);
+    const option = configOptions.find(opt => 
+        opt.section === section && 
+        (opt.subsection || '') === subsection &&
+        opt.name === key
+    );
 
     if (toggle.checked) {
         input.classList.remove('default-state');
-        input.disabled = false;
+        if (option && option.type === 'color') {
+            // Color picker buttons are always enabled when checked
+            input.disabled = false;
+        } else {
+            input.disabled = false;
+        }
         if (formGroup) {
             formGroup.classList.remove('hidden');
         }
-        // Restore default value if it was cleared
-        if (option && option.default !== null && !input.value) {
+        // For color pickers, don't set a default value
+        if (option && option.type !== 'color' && option.default !== null && !input.value) {
             input.value = option.default;
         }
     } else {
         input.classList.add('default-state');
         input.disabled = true;
-        // Reset to default value if option has one
-        if (option && option.default !== null) {
-            input.value = option.default;
-        } else {
-            input.value = '';
+        // Reset to default value if option has one (but not for color pickers)
+        if (option && option.type !== 'color') {
+            if (option.default !== null) {
+                input.value = option.default;
+            } else {
+                input.value = '';
+            }
+        } else if (option && option.type === 'color') {
+            // Reset color picker
+            input.dataset.colorIndex = '';
+            input.style.backgroundColor = '#f5f5f5';
+            input.textContent = 'None';
         }
         if (formGroup && !document.getElementById('showDefaults').checked) {
             formGroup.classList.add('hidden');
@@ -458,16 +640,39 @@ function updateOutput() {
     // Collect all enabled options
     document.querySelectorAll('.option-toggle:checked').forEach(toggle => {
         const section = toggle.dataset.section;
+        const subsection = toggle.dataset.subsection || '';
         const key = toggle.dataset.key;
         const input = document.querySelector(
-            `.config-input[data-section="${section}"][data-key="${key}"]`
+            `.config-input[data-section="${section}"][data-subsection="${subsection}"][data-key="${key}"]`
         );
 
-        if (input && input.value.trim()) {
+        if (!input) return;
+
+        let value = '';
+        // Handle color pickers
+        if (input.classList.contains('color-picker-button')) {
+            const colorIndex = input.dataset.colorIndex;
+            if (colorIndex !== undefined && colorIndex !== '') {
+                value = colorIndex;
+            }
+        } else if (input.value && input.value.trim()) {
+            value = input.value.trim();
+        }
+
+        if (value) {
             if (!config[section]) {
                 config[section] = {};
             }
-            config[section][key] = input.value.trim();
+            
+            // Handle subsections
+            if (subsection) {
+                if (!config[section][subsection]) {
+                    config[section][subsection] = {};
+                }
+                config[section][subsection][key] = value;
+            } else {
+                config[section][key] = value;
+            }
         }
     });
 
@@ -515,32 +720,63 @@ function updateOutput() {
             continue;
         }
 
-        output += `[${section}]\n`;
-        for (const [key, value] of Object.entries(values)) {
-            // Find the option to get the correct config name
-            const option = configOptions.find(opt => opt.section === section && opt.name === key);
-            let outputKey = option && option.configName ? option.configName : key;
+        // Check if this section has subsections
+        const hasSubsections = Object.values(values).some(v => typeof v === 'object' && v !== null && !Array.isArray(v));
+        
+        if (hasSubsections) {
+            // Handle subsections (e.g., color.diff, color.status)
+            for (const [subsection, subsectionValues] of Object.entries(values)) {
+                if (typeof subsectionValues !== 'object' || subsectionValues === null) continue;
+                
+                output += `[${section} "${subsection}"]\n`;
+                for (const [key, value] of Object.entries(subsectionValues)) {
+                    // Find the option to get the correct config name
+                    const option = configOptions.find(opt => 
+                        opt.section === section && 
+                        (opt.subsection || '') === subsection &&
+                        opt.name === key
+                    );
+                    let outputKey = option && option.configName ? option.configName : key;
 
-            // Skip if value matches default (unless explicitly set)
-            if (option && option.default !== null && value === option.default) {
-                // Still include it if the toggle is checked
-                const toggle = document.querySelector(
-                    `.option-toggle[data-section="${section}"][data-key="${key}"]`
-                );
-                if (!toggle || !toggle.checked) {
-                    continue;
+                    // Quote values with spaces or special characters
+                    let outputValue = value;
+                    if (value.includes(' ') || value.includes('=') || value.includes('"')) {
+                        outputValue = `"${value.replace(/"/g, '\\"')}"`;
+                    }
+
+                    output += `\t${outputKey} = ${outputValue}\n`;
                 }
+                output += '\n';
             }
+        } else {
+            // Regular section without subsections
+            output += `[${section}]\n`;
+            for (const [key, value] of Object.entries(values)) {
+                // Find the option to get the correct config name
+                const option = configOptions.find(opt => opt.section === section && opt.name === key);
+                let outputKey = option && option.configName ? option.configName : key;
 
-            // Quote values with spaces or special characters
-            let outputValue = value;
-            if (value.includes(' ') || value.includes('=') || value.includes('"')) {
-                outputValue = `"${value.replace(/"/g, '\\"')}"`;
+                // Skip if value matches default (unless explicitly set)
+                if (option && option.default !== null && value === option.default) {
+                    // Still include it if the toggle is checked
+                    const toggle = document.querySelector(
+                        `.option-toggle[data-section="${section}"][data-key="${key}"]`
+                    );
+                    if (!toggle || !toggle.checked) {
+                        continue;
+                    }
+                }
+
+                // Quote values with spaces or special characters
+                let outputValue = value;
+                if (value.includes(' ') || value.includes('=') || value.includes('"')) {
+                    outputValue = `"${value.replace(/"/g, '\\"')}"`;
+                }
+
+                output += `\t${outputKey} = ${outputValue}\n`;
             }
-
-            output += `\t${outputKey} = ${outputValue}\n`;
+            output += '\n';
         }
-        output += '\n';
     }
 
     document.getElementById('output').textContent = output.trim() || '# No configuration options selected';
