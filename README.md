@@ -8,4 +8,4 @@ A static website for generating and customizing `.git/config` files.
     - `~/.git/gitconfig` for per-user options
     - `<repo>/.git/gitconfig` for per-repo options
 
-View the site on github.
+[View the site](https://ralian.github.io/gitconfig-generator/) on Github Pages.
