@@ -1,0 +1,1347 @@
+[
+  {
+    "section": "user",
+    "subsection": null,
+    "name": "name",
+    "displayName": "Name",
+    "type": "text",
+    "default": null,
+    "description": "The name used for commits. This should be your full name or a name that identifies you."
+  },
+  {
+    "section": "user",
+    "subsection": null,
+    "name": "email",
+    "displayName": "Email",
+    "type": "email",
+    "default": null,
+    "description": "The email address used for commits. This should be your actual email address."
+  },
+  {
+    "section": "user",
+    "subsection": null,
+    "name": "useConfigOnly",
+    "configName": "useConfigOnly",
+    "displayName": "Use Config Only",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "Instruct Git to avoid trying to guess defaults for user.email and user.name, and instead retrieve the values only from the configuration."
+  },
+  {
+    "section": "user",
+    "subsection": null,
+    "name": "signingKey",
+    "configName": "signingKey",
+    "displayName": "Signing Key",
+    "type": "text",
+    "default": null,
+    "description": "If git-tag or git-commit is not selecting the key you want it to automatically when creating a signed tag or commit, you can override the default selection with this variable."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "editor",
+    "displayName": "Editor",
+    "type": "text",
+    "default": null,
+    "description": "The editor that Git will use for commit messages and other text input. Common values: vim, nano, code, notepad."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "autocrlf",
+    "displayName": "Autocrlf",
+    "type": "select",
+    "options": ["true", "false", "input"],
+    "default": null,
+    "description": "Controls how Git handles line endings. 'true' converts LF to CRLF on checkout, 'input' converts CRLF to LF on commit, 'false' does no conversion."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "safecrlf",
+    "displayName": "Safecrlf",
+    "type": "select",
+    "options": ["true", "false", "warn"],
+    "default": null,
+    "description": "If true, Git will refuse to commit files with mixed line endings. If warn, Git will warn but allow the commit."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "quotepath",
+    "displayName": "Quotepath",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will quote paths with unusual characters. If false, paths are displayed as-is."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "ignorecase",
+    "displayName": "Ignorecase",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will ignore case differences in file names. Useful on case-insensitive filesystems."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "filemode",
+    "displayName": "Filemode",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will track file permission changes. Set to false on filesystems that don't support permissions."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "repositoryFormatVersion",
+    "configName": "repositoryFormatVersion",
+    "displayName": "Repository Format Version",
+    "type": "text",
+    "default": "0",
+    "description": "Internal variable identifying the repository format and layout version."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "bare",
+    "displayName": "Bare",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, the repository is assumed to be bare with no working directory."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "worktree",
+    "displayName": "Worktree",
+    "type": "text",
+    "default": null,
+    "description": "Path to the root of the working tree."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "logAllRefUpdates",
+    "configName": "logAllRefUpdates",
+    "displayName": "Log All Ref Updates",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will log all ref updates to logs/HEAD file."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "precomposeUnicode",
+    "configName": "precomposeUnicode",
+    "displayName": "Precompose Unicode",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will precompose unicode characters on Mac OS X."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "hooksPath",
+    "configName": "hooksPath",
+    "displayName": "Hooks Path",
+    "type": "text",
+    "default": null,
+    "description": "Path to the directory where Git hooks are stored."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "abbrev",
+    "displayName": "Abbrev",
+    "type": "text",
+    "default": "7",
+    "description": "Set the length object names are abbreviated to."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "commentChar",
+    "configName": "commentChar",
+    "displayName": "Comment Char",
+    "type": "text",
+    "default": "#",
+    "description": "Character used to indicate a comment in config files."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "excludesFile",
+    "configName": "excludesFile",
+    "displayName": "Excludes File",
+    "type": "text",
+    "default": null,
+    "description": "Path to a file containing patterns to exclude from git status and other commands."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "askPass",
+    "configName": "askPass",
+    "displayName": "Ask Pass",
+    "type": "text",
+    "default": null,
+    "description": "Program to use for asking for passwords."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "attributesFile",
+    "configName": "attributesFile",
+    "displayName": "Attributes File",
+    "type": "text",
+    "default": null,
+    "description": "Path to a file containing gitattributes."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "compression",
+    "displayName": "Compression",
+    "type": "text",
+    "default": "-1",
+    "description": "Compression level for pack files. -1 is default, 0 is no compression, 1-9 are compression levels."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "deltaBaseCacheLimit",
+    "configName": "deltaBaseCacheLimit",
+    "displayName": "Delta Base Cache Limit",
+    "type": "text",
+    "default": "96",
+    "description": "Maximum number of bytes to cache for delta base objects."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "bigFileThreshold",
+    "configName": "bigFileThreshold",
+    "displayName": "Big File Threshold",
+    "type": "text",
+    "default": "512m",
+    "description": "Files larger than this will be stored as separate files instead of being delta compressed."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "packedGitLimit",
+    "configName": "packedGitLimit",
+    "displayName": "Packed Git Limit",
+    "type": "text",
+    "default": "256m",
+    "description": "Maximum size of a packed git file."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "packedGitWindowSize",
+    "configName": "packedGitWindowSize",
+    "displayName": "Packed Git Window Size",
+    "type": "text",
+    "default": "32m",
+    "description": "Size of the window used for delta compression."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "packedRefsTimeout",
+    "configName": "packedRefsTimeout",
+    "displayName": "Packed Refs Timeout",
+    "type": "text",
+    "default": null,
+    "description": "Timeout for reading packed refs."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "preloadIndex",
+    "configName": "preloadIndex",
+    "displayName": "Preload Index",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will preload the index in parallel to speed up operations."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "createObject",
+    "configName": "createObject",
+    "displayName": "Create Object",
+    "type": "select",
+    "options": ["link", "rename"],
+    "default": "link",
+    "description": "How to create object files: 'link' uses hardlinks, 'rename' uses rename."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "notesRef",
+    "configName": "notesRef",
+    "displayName": "Notes Ref",
+    "type": "text",
+    "default": "refs/notes/commits",
+    "description": "Ref to use for notes."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "noSymbolicLinks",
+    "configName": "noSymbolicLinks",
+    "displayName": "No Symbolic Links",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will not use symbolic links."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "symlinks",
+    "displayName": "Symlinks",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will use symbolic links when possible."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "gitProxy",
+    "configName": "gitProxy",
+    "displayName": "Git Proxy",
+    "type": "text",
+    "default": null,
+    "description": "Command to use as a proxy for git:// URLs."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "sshCommand",
+    "configName": "sshCommand",
+    "displayName": "SSH Command",
+    "type": "text",
+    "default": null,
+    "description": "Command to use for SSH connections."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "pager",
+    "displayName": "Pager",
+    "type": "text",
+    "default": null,
+    "description": "Command to use as a pager for output."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "whitespace",
+    "displayName": "Whitespace",
+    "type": "text",
+    "default": null,
+    "description": "Comma-separated list of whitespace problems to detect: blank-at-eol, blank-at-eof, space-before-tab, indent-with-non-tab, tab-in-indent, trailing-space, cr-at-eol."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "fsckObjects",
+    "configName": "fsckObjects",
+    "displayName": "Fsck Objects",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will verify objects during transfer."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "fsckSkipList",
+    "configName": "fsckSkipList",
+    "displayName": "Fsck Skip List",
+    "type": "text",
+    "default": null,
+    "description": "Path to a file containing object IDs to skip during fsck."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "receiveFsckObjects",
+    "configName": "receiveFsckObjects",
+    "displayName": "Receive Fsck Objects",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will verify objects during receive."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "receiveUnpackLimit",
+    "configName": "receiveUnpackLimit",
+    "displayName": "Receive Unpack Limit",
+    "type": "text",
+    "default": "1",
+    "description": "Maximum number of objects to unpack during receive."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "transferUnpackLimit",
+    "configName": "transferUnpackLimit",
+    "displayName": "Transfer Unpack Limit",
+    "type": "text",
+    "default": "100",
+    "description": "Maximum number of objects to unpack during transfer."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "unpackedUseKeepFile",
+    "configName": "unpackedUseKeepFile",
+    "displayName": "Unpacked Use Keep File",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will use .keep files for unpacked objects."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "packUseSparse",
+    "configName": "packUseSparse",
+    "displayName": "Pack Use Sparse",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will use sparse pack index."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "checkStat",
+    "configName": "checkStat",
+    "displayName": "Check Stat",
+    "type": "select",
+    "options": ["default", "minimal"],
+    "default": "default",
+    "description": "When to check stat information: 'default' always checks, 'minimal' checks less frequently."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "trustctime",
+    "displayName": "Trust Ctime",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will trust the ctime field of files."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "checkRoundtripEncoding",
+    "configName": "checkRoundtripEncoding",
+    "displayName": "Check Roundtrip Encoding",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will check that encoding roundtrips correctly."
+  },
+  {
+    "section": "core",
+    "subsection": null,
+    "name": "eol",
+    "displayName": "EOL",
+    "type": "select",
+    "options": ["lf", "crlf", "native"],
+    "default": "native",
+    "description": "Line ending style: 'lf' for LF, 'crlf' for CRLF, 'native' for platform default."
+  },
+  {
+    "section": "init",
+    "subsection": null,
+    "name": "defaultBranch",
+    "configName": "default-branch",
+    "displayName": "Default Branch",
+    "type": "text",
+    "default": "main",
+    "description": "The default branch name for new repositories. Common values: main, master, develop."
+  },
+  {
+    "section": "push",
+    "subsection": null,
+    "name": "default",
+    "displayName": "Default",
+    "type": "select",
+    "options": ["simple", "upstream", "current", "nothing"],
+    "default": "simple",
+    "description": "Defines the default push behavior. 'simple' pushes current branch to upstream, 'upstream' pushes to upstream, 'current' pushes current branch to same name, 'nothing' requires explicit specification."
+  },
+  {
+    "section": "push",
+    "subsection": null,
+    "name": "autoSetupRemote",
+    "displayName": "Auto Setup Remote",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will automatically set up the remote tracking branch when pushing a new branch."
+  },
+  {
+    "section": "pull",
+    "subsection": null,
+    "name": "rebase",
+    "displayName": "Rebase",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will rebase instead of merge when pulling. This creates a linear history."
+  },
+  {
+    "section": "pull",
+    "subsection": null,
+    "name": "twohead",
+    "configName": "twohead",
+    "displayName": "Twohead",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "Deprecated. Use pull.rebase instead."
+  },
+  {
+    "section": "pull",
+    "subsection": null,
+    "name": "ff",
+    "displayName": "Fast Forward",
+    "type": "select",
+    "options": ["true", "false", "only"],
+    "default": null,
+    "description": "Controls how Git handles fast-forward merges. 'true' allows fast-forward, 'false' always creates merge commit, 'only' only allows fast-forward."
+  },
+  {
+    "section": "branch",
+    "subsection": null,
+    "name": "autoSetupMerge",
+    "configName": "autoSetupMerge",
+    "displayName": "Auto Setup Merge",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will automatically set up tracking information when creating a new branch."
+  },
+  {
+    "section": "branch",
+    "subsection": null,
+    "name": "autoSetupRebase",
+    "configName": "autoSetupRebase",
+    "displayName": "Auto Setup Rebase",
+    "type": "select",
+    "options": ["always", "local", "remote", "never"],
+    "default": "never",
+    "description": "If set, Git will automatically rebase branches when pulling. 'always' for all branches, 'local' for local branches, 'remote' for remote branches, 'never' to disable."
+  },
+  {
+    "section": "branch",
+    "subsection": null,
+    "name": "sort",
+    "displayName": "Sort",
+    "type": "text",
+    "default": null,
+    "description": "Sort key for branch listing. Common values: refname, committerdate, authordate."
+  },
+  {
+    "section": "remote",
+    "subsection": null,
+    "name": "default",
+    "displayName": "Default Remote",
+    "type": "text",
+    "default": null,
+    "description": "Default remote name to use when none is specified."
+  },
+  {
+    "section": "fetch",
+    "subsection": null,
+    "name": "prune",
+    "displayName": "Prune",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will automatically remove remote-tracking references that no longer exist on the remote."
+  },
+  {
+    "section": "fetch",
+    "subsection": null,
+    "name": "pruneTags",
+    "configName": "pruneTags",
+    "displayName": "Prune Tags",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will automatically remove tags that no longer exist on the remote."
+  },
+  {
+    "section": "fetch",
+    "subsection": null,
+    "name": "output",
+    "displayName": "Output",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will show output from fetch operations."
+  },
+  {
+    "section": "fetch",
+    "subsection": null,
+    "name": "parallel",
+    "displayName": "Parallel",
+    "type": "text",
+    "default": null,
+    "description": "Number of parallel subprocesses to use when fetching from multiple remotes."
+  },
+  {
+    "section": "merge",
+    "subsection": null,
+    "name": "tool",
+    "displayName": "Tool",
+    "type": "text",
+    "default": null,
+    "description": "Tool to use for merge conflicts. Common values: vimdiff, meld, kdiff3, tortoisemerge."
+  },
+  {
+    "section": "merge",
+    "subsection": null,
+    "name": "conflictStyle",
+    "configName": "conflictStyle",
+    "displayName": "Conflict Style",
+    "type": "select",
+    "options": ["merge", "diff3", "zdiff3"],
+    "default": "merge",
+    "description": "Style of conflict markers. 'merge' shows standard markers, 'diff3' includes common ancestor, 'zdiff3' is like diff3 but removes matching lines."
+  },
+  {
+    "section": "merge",
+    "subsection": null,
+    "name": "ff",
+    "displayName": "Fast Forward",
+    "type": "select",
+    "options": ["true", "false", "only"],
+    "default": "true",
+    "description": "Controls how Git handles fast-forward merges. 'true' allows fast-forward, 'false' always creates merge commit, 'only' only allows fast-forward."
+  },
+  {
+    "section": "merge",
+    "subsection": null,
+    "name": "commit",
+    "displayName": "Commit",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will automatically commit after a successful merge."
+  },
+  {
+    "section": "merge",
+    "subsection": null,
+    "name": "squash",
+    "displayName": "Squash",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will squash all commits into a single commit when merging."
+  },
+  {
+    "section": "merge",
+    "subsection": null,
+    "name": "stat",
+    "displayName": "Stat",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will show a diffstat after merging."
+  },
+  {
+    "section": "merge",
+    "subsection": null,
+    "name": "verbosity",
+    "displayName": "Verbosity",
+    "type": "select",
+    "options": ["0", "1", "2", "5"],
+    "default": "2",
+    "description": "Level of verbosity for merge output. 0 is quiet, 5 is very verbose."
+  },
+  {
+    "section": "merge",
+    "subsection": null,
+    "name": "branchdesc",
+    "displayName": "Branch Desc",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will include branch descriptions in merge commit messages."
+  },
+  {
+    "section": "merge",
+    "subsection": null,
+    "name": "log",
+    "displayName": "Log",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will include shortlog of commits being merged in the merge commit message."
+  },
+  {
+    "section": "merge",
+    "subsection": null,
+    "name": "suppressDest",
+    "configName": "suppressDest",
+    "displayName": "Suppress Dest",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will suppress the 'into <branch>' message in merge commit messages."
+  },
+  {
+    "section": "merge",
+    "subsection": null,
+    "name": "verifySignatures",
+    "configName": "verifySignatures",
+    "displayName": "Verify Signatures",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will verify GPG signatures of commits being merged."
+  },
+  {
+    "section": "rebase",
+    "subsection": null,
+    "name": "autoStash",
+    "configName": "autoStash",
+    "displayName": "Auto Stash",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will automatically stash uncommitted changes before rebasing and reapply them after."
+  },
+  {
+    "section": "rebase",
+    "subsection": null,
+    "name": "autoSquash",
+    "configName": "autoSquash",
+    "displayName": "Auto Squash",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will automatically squash fixup and squash commits during interactive rebase."
+  },
+  {
+    "section": "rebase",
+    "subsection": null,
+    "name": "updateRefs",
+    "configName": "updateRefs",
+    "displayName": "Update Refs",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will update branches that point to commits being rebased."
+  },
+  {
+    "section": "rebase",
+    "subsection": null,
+    "name": "missing",
+    "displayName": "Missing",
+    "type": "select",
+    "options": ["error", "warn", "ignore"],
+    "default": "error",
+    "description": "How to handle missing commits during rebase. 'error' aborts, 'warn' warns but continues, 'ignore' silently continues."
+  },
+  {
+    "section": "rebase",
+    "subsection": null,
+    "name": "rebaseMerges",
+    "configName": "rebaseMerges",
+    "displayName": "Rebase Merges",
+    "type": "select",
+    "options": ["true", "false", "rebase-cousins"],
+    "default": "false",
+    "description": "If true, Git will preserve merge commits during rebase. 'rebase-cousins' also rebases commits with the same merge base."
+  },
+  {
+    "section": "rebase",
+    "subsection": null,
+    "name": "forkPoint",
+    "configName": "forkPoint",
+    "displayName": "Fork Point",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will use the fork point algorithm to determine the base for rebase."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "tool",
+    "displayName": "Tool",
+    "type": "text",
+    "default": null,
+    "description": "Tool to use for showing diffs. Common values: vimdiff, meld, kdiff3, difftool."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "algorithm",
+    "displayName": "Algorithm",
+    "type": "select",
+    "options": ["myers", "minimal", "patience", "histogram"],
+    "default": "myers",
+    "description": "Diff algorithm to use. 'myers' is default, 'minimal' is slower but more accurate, 'patience' and 'histogram' are alternative algorithms."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "indentHeuristic",
+    "configName": "indentHeuristic",
+    "displayName": "Indent Heuristic",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will use an indent heuristic to improve diff output."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "compactionHeuristic",
+    "configName": "compactionHeuristic",
+    "displayName": "Compaction Heuristic",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will use a compaction heuristic to reduce diff size."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "colorMoved",
+    "configName": "colorMoved",
+    "displayName": "Color Moved",
+    "type": "select",
+    "options": ["true", "false", "default", "plain", "blocks", "zebra", "dimmed-zebra"],
+    "default": "false",
+    "description": "If true, Git will color moved lines in diffs. Various modes available for different highlighting styles."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "colorMovedWS",
+    "configName": "colorMovedWS",
+    "displayName": "Color Moved Whitespace",
+    "type": "select",
+    "options": ["true", "false", "ignore-all", "ignore-space-change", "ignore-space-at-eol", "ignore-at-eol"],
+    "default": "false",
+    "description": "How to handle whitespace when detecting moved lines."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "renames",
+    "displayName": "Renames",
+    "type": "select",
+    "options": ["true", "false", "copies", "copy"],
+    "default": "true",
+    "description": "If true, Git will detect renames. 'copies' or 'copy' also detects copies."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "renameLimit",
+    "configName": "renameLimit",
+    "displayName": "Rename Limit",
+    "type": "text",
+    "default": "400",
+    "description": "Maximum number of files to consider when detecting renames."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "statGraphWidth",
+    "configName": "statGraphWidth",
+    "displayName": "Stat Graph Width",
+    "type": "text",
+    "default": null,
+    "description": "Width of the graph part in diffstat output."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "statWidth",
+    "configName": "statWidth",
+    "displayName": "Stat Width",
+    "type": "text",
+    "default": null,
+    "description": "Width of the filename part in diffstat output."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "statNameWidth",
+    "configName": "statNameWidth",
+    "displayName": "Stat Name Width",
+    "type": "text",
+    "default": null,
+    "description": "Width of the filename part in diffstat output."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "statCount",
+    "configName": "statCount",
+    "displayName": "Stat Count",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will show number of lines added and deleted in diffstat."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "context",
+    "displayName": "Context",
+    "type": "text",
+    "default": "3",
+    "description": "Number of context lines to show in diffs."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "interHunkContext",
+    "configName": "interHunkContext",
+    "displayName": "Inter Hunk Context",
+    "type": "text",
+    "default": "0",
+    "description": "Number of context lines between hunks in diffs."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "functionContext",
+    "configName": "functionContext",
+    "displayName": "Function Context",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will show function context in diffs."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "wordRegex",
+    "configName": "wordRegex",
+    "displayName": "Word Regex",
+    "type": "text",
+    "default": null,
+    "description": "Regular expression used to determine what constitutes a word for word-diff."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "external",
+    "displayName": "External",
+    "type": "text",
+    "default": null,
+    "description": "Command to use for external diff."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "ignoreSubmodules",
+    "configName": "ignoreSubmodules",
+    "displayName": "Ignore Submodules",
+    "type": "select",
+    "options": ["all", "dirty", "untracked", "none"],
+    "default": "none",
+    "description": "How to handle submodules in diffs. 'all' ignores all changes, 'dirty' ignores only dirty submodules, 'untracked' ignores untracked files, 'none' shows all changes."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "submodule",
+    "displayName": "Submodule",
+    "type": "select",
+    "options": ["short", "log", "diff"],
+    "default": "short",
+    "description": "Format for submodule diffs. 'short' shows summary, 'log' shows commit log, 'diff' shows full diff."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "orderFile",
+    "configName": "orderFile",
+    "displayName": "Order File",
+    "type": "text",
+    "default": null,
+    "description": "File containing patterns to control the order of files in diffs."
+  },
+  {
+    "section": "diff",
+    "subsection": null,
+    "name": "wsErrorHighlight",
+    "configName": "wsErrorHighlight",
+    "displayName": "Whitespace Error Highlight",
+    "type": "text",
+    "default": null,
+    "description": "Highlight whitespace errors. Comma-separated list: all, default, new, old, context, none."
+  },
+  {
+    "section": "log",
+    "subsection": null,
+    "name": "date",
+    "displayName": "Date",
+    "type": "select",
+    "options": ["relative", "local", "default", "iso", "iso-strict", "rfc", "short", "raw", "unix", "format:"],
+    "default": "default",
+    "description": "Date format for log output. Various formats available including relative, iso, rfc, etc."
+  },
+  {
+    "section": "log",
+    "subsection": null,
+    "name": "decorate",
+    "displayName": "Decorate",
+    "type": "select",
+    "options": ["true", "false", "short", "full", "auto"],
+    "default": "auto",
+    "description": "If true, Git will show ref names next to commits. 'short' shows short ref names, 'full' shows full ref names, 'auto' shows if output goes to terminal."
+  },
+  {
+    "section": "log",
+    "subsection": null,
+    "name": "mailmap",
+    "displayName": "Mailmap",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will use .mailmap file to map author names and emails."
+  },
+  {
+    "section": "log",
+    "subsection": null,
+    "name": "showSignature",
+    "configName": "showSignature",
+    "displayName": "Show Signature",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will show GPG signature information in log output."
+  },
+  {
+    "section": "log",
+    "subsection": null,
+    "name": "abbrevCommit",
+    "configName": "abbrevCommit",
+    "displayName": "Abbrev Commit",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will abbreviate commit hashes in log output."
+  },
+  {
+    "section": "log",
+    "subsection": null,
+    "name": "follow",
+    "displayName": "Follow",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will follow renames in log output."
+  },
+  {
+    "section": "log",
+    "subsection": null,
+    "name": "all",
+    "displayName": "All",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will show all branches in log output."
+  },
+  {
+    "section": "log",
+    "subsection": null,
+    "name": "showRoot",
+    "configName": "showRoot",
+    "displayName": "Show Root",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will show the root commit in log output."
+  },
+  {
+    "section": "status",
+    "subsection": null,
+    "name": "showStash",
+    "configName": "showStash",
+    "displayName": "Show Stash",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will show number of stashed changes in status output."
+  },
+  {
+    "section": "status",
+    "subsection": null,
+    "name": "submoduleSummary",
+    "configName": "submoduleSummary",
+    "displayName": "Submodule Summary",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will show submodule summary in status output."
+  },
+  {
+    "section": "status",
+    "subsection": null,
+    "name": "branch",
+    "displayName": "Branch",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will show branch information in status output."
+  },
+  {
+    "section": "status",
+    "subsection": null,
+    "name": "aheadBehind",
+    "configName": "aheadBehind",
+    "displayName": "Ahead Behind",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will show ahead/behind information in status output."
+  },
+  {
+    "section": "status",
+    "subsection": null,
+    "name": "renames",
+    "displayName": "Renames",
+    "type": "select",
+    "options": ["true", "false", "copies"],
+    "default": "true",
+    "description": "If true, Git will detect renames in status. 'copies' also detects copies."
+  },
+  {
+    "section": "status",
+    "subsection": null,
+    "name": "renameLimit",
+    "configName": "renameLimit",
+    "displayName": "Rename Limit",
+    "type": "text",
+    "default": null,
+    "description": "Maximum number of files to consider when detecting renames in status."
+  },
+  {
+    "section": "status",
+    "subsection": null,
+    "name": "short",
+    "displayName": "Short",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will show short format status output."
+  },
+  {
+    "section": "status",
+    "subsection": null,
+    "name": "porcelain",
+    "displayName": "Porcelain",
+    "type": "select",
+    "options": ["true", "false", "v1", "v2"],
+    "default": "false",
+    "description": "If true, Git will show machine-readable status output. 'v1' and 'v2' specify version."
+  },
+  {
+    "section": "status",
+    "subsection": null,
+    "name": "showUntrackedFiles",
+    "configName": "showUntrackedFiles",
+    "displayName": "Show Untracked Files",
+    "type": "select",
+    "options": ["true", "false", "no", "normal", "all"],
+    "default": "normal",
+    "description": "How to show untracked files. 'no' or 'false' hides them, 'normal' shows them, 'all' shows individual files in directories."
+  },
+  {
+    "section": "status",
+    "subsection": null,
+    "name": "ignoreSubmodules",
+    "configName": "ignoreSubmodules",
+    "displayName": "Ignore Submodules",
+    "type": "select",
+    "options": ["all", "dirty", "untracked", "none"],
+    "default": "none",
+    "description": "How to handle submodules in status. 'all' ignores all changes, 'dirty' ignores only dirty submodules, 'untracked' ignores untracked files, 'none' shows all changes."
+  },
+  {
+    "section": "tag",
+    "subsection": null,
+    "name": "sort",
+    "displayName": "Sort",
+    "type": "text",
+    "default": null,
+    "description": "Sort key for tag listing. Common values: refname, version:refname, creatordate."
+  },
+  {
+    "section": "tag",
+    "subsection": null,
+    "name": "forceSignAnnotated",
+    "configName": "forceSignAnnotated",
+    "displayName": "Force Sign Annotated",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will require GPG signing for annotated tags."
+  },
+  {
+    "section": "tag",
+    "subsection": null,
+    "name": "gpgSign",
+    "configName": "gpgSign",
+    "displayName": "GPG Sign",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will automatically GPG sign tags."
+  },
+  {
+    "section": "tag",
+    "subsection": null,
+    "name": "abbrev",
+    "displayName": "Abbrev",
+    "type": "text",
+    "default": null,
+    "description": "Set the length tag names are abbreviated to."
+  },
+  {
+    "section": "show",
+    "subsection": null,
+    "name": "default",
+    "displayName": "Default",
+    "type": "text",
+    "default": null,
+    "description": "Default format for git show output."
+  },
+  {
+    "section": "show",
+    "subsection": null,
+    "name": "notes",
+    "displayName": "Notes",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will show notes in show output."
+  },
+  {
+    "section": "show",
+    "subsection": null,
+    "name": "showNotes",
+    "configName": "showNotes",
+    "displayName": "Show Notes",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "true",
+    "description": "If true, Git will show notes in show output."
+  },
+  {
+    "section": "show",
+    "subsection": null,
+    "name": "showSignature",
+    "configName": "showSignature",
+    "displayName": "Show Signature",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will show GPG signature information in show output."
+  },
+  {
+    "section": "credential",
+    "subsection": null,
+    "name": "helper",
+    "displayName": "Helper",
+    "type": "text",
+    "default": null,
+    "description": "External helper to use for credential storage. Can be specified multiple times."
+  },
+  {
+    "section": "credential",
+    "subsection": null,
+    "name": "useHttpPath",
+    "configName": "useHttpPath",
+    "displayName": "Use HTTP Path",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, Git will use the full URL path when looking up credentials."
+  },
+  {
+    "section": "credential",
+    "subsection": null,
+    "name": "username",
+    "displayName": "Username",
+    "type": "text",
+    "default": null,
+    "description": "Default username to use for authentication."
+  },
+  {
+    "section": "worktree",
+    "subsection": null,
+    "name": "guessRemote",
+    "configName": "guessRemote",
+    "displayName": "Guess Remote",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "If true, git worktree add will try to find a remote-tracking branch whose name uniquely matches the new branch name."
+  },
+  {
+    "section": "worktree",
+    "subsection": null,
+    "name": "useRelativePaths",
+    "configName": "useRelativePaths",
+    "displayName": "Use Relative Paths",
+    "type": "select",
+    "options": ["true", "false"],
+    "default": "false",
+    "description": "Link worktrees using relative paths (when 'true') or absolute paths (when 'false')."
+  },
+  {
+    "section": "web",
+    "subsection": null,
+    "name": "browser",
+    "displayName": "Browser",
+    "type": "text",
+    "default": null,
+    "description": "Web browser that may be used by some commands. Currently only git-instaweb and git-help may use it."
+  },
+  {
+    "section": "versionsort",
+    "subsection": null,
+    "name": "suffix",
+    "displayName": "Suffix",
+    "type": "text",
+    "default": null,
+    "description": "Even when version sort is used in git-tag, tagnames with the same base version but different suffixes are still sorted lexicographically. This variable can be specified to determine the sorting order of tags with different suffixes."
+  }
+]
+

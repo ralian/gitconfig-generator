@@ -1,0 +1,366 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #000a33 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+header h1 {
+    color: #001264;
+    margin-bottom: 1rem;
+    font-size: 2.5em;
+}
+
+header p {
+    color: #666;
+    font-size: 1.1em;
+}
+
+header code {
+    background: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+.material-symbols-outlined {
+  vertical-align: bottom;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.drag-drop-area {
+    border: 3px dashed #000933;
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+    background: #f8f9ff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.drag-drop-area:hover {
+    background: #f0f2ff;
+    border-color: #764ba2;
+}
+
+.drag-drop-area.dragover {
+    background: #e8ebff;
+    border-color: #764ba2;
+}
+
+.drag-drop-area p {
+    color: #000a38;
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+
+.drag-drop-area .hint {
+    font-size: 0.9em;
+    color: #999;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 15px;
+    background: #f8f9ff;
+    border-radius: 8px;
+}
+
+.controls label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #666;
+    flex-shrink: 0;
+}
+
+.controls input[type="checkbox"] {
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    --b: 0.2rem;     /* the border thickness*/
+    --c: #000000; /* the color */
+    background: #001265;
+    color: white;
+    outline: calc(var(--s)/2) solid #0009;
+    cursor: pointer;
+    transition: .05s;
+  }
+  .btn-primary:hover {
+    outline: var(--b) solid var(--c);
+  }
+
+.btn-secondary {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #d0d0d0;
+}
+
+.config-section {
+    margin: 1rem;
+    padding: 20px;
+    background: #fafafa;
+    border-radius: 8px;
+    border-left: 4px solid #0d279c;
+    border-top: 1px solid #0d279c;
+    border-bottom: 1px solid #0d279c;
+    border-right: 1px solid #0d279c;
+}
+
+.config-section h2 {
+    color: #00177c;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.form-group label {
+    flex: 0 0 150px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.form-group input[type="checkbox"] {
+    flex-shrink: 0;
+    width: 1.125rem;
+    height: 1.125rem;
+    cursor: pointer;
+}
+
+.config-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 25%;
+    padding: 10px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 1em;
+    transition: all 0.2s ease;
+}
+
+.config-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.config-input.default-state {
+    background: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.config-input.default-state:focus {
+    border-color: #ccc;
+    box-shadow: none;
+}
+
+.form-group.hidden {
+    display: none;
+}
+
+.option-label {
+    cursor: help;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+}
+
+.option-description {
+    margin-top: 5px;
+    font-size: 0.85em;
+    max-width: 40%;
+    color: #333;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.alias-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+}
+
+.alias-item .alias-name {
+    flex: 0 0 150px;
+    padding: 8px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 0.95em;
+}
+
+.alias-item .alias-value {
+    flex: 1;
+    padding: 8px 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 0.95em;
+    font-family: 'Courier New', monospace;
+}
+
+.alias-item span {
+    color: #00115d;
+    font-weight: bold;
+}
+
+.btn-remove {
+    background: #870101;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 1.2em;
+    line-height: 1;
+    transition: all 0.2s ease;
+}
+
+.btn-remove:hover {
+    background: #a10606;
+}
+
+.btn-add {
+    background: #00177f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+.btn-add:hover {
+    background: #000d56;
+    transform: translateY(-2px);
+}
+
+.output-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: #1e1e1e;
+    border-radius: 8px;
+}
+
+.output-section h2 {
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+#output {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 20px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border: 1px solid #3e3e3e;
+}
+
+#output code {
+    color: #d4d4d4;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-group label {
+        flex: 0 0 auto;
+    }
+
+    .config-input {
+        width: 100%;
+    }
+
+    .option-description {
+        margin-left: 0;
+        margin-top: 8px;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-primary {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+

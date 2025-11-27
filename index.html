@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gitconfig generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=upload_file" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>gitconfig generator</h1>
+            <p>Generate and customize your <code>.git/config</code> file</p>
+        </header>
+
+        <div class="drag-drop-area" id="dragDropArea">
+            <p><span class="material-symbols-outlined">upload_file</span>
+                Drop a config file here to load settings</p>
+            <p class="hint">or click to browse</p>
+            <input type="file" id="fileInput" accept=".git/config,text/plain" style="display: none;">
+        </div>
+
+        <div class="controls">
+            <label>
+                <input type="checkbox" id="showDefaults" checked> Show all options
+            </label>
+            <button id="clearBtn" class="btn-secondary">Clear All</button>
+            <button id="copyBtn" class="btn-primary">Copy Config</button>
+        </div>
+
+        <p>Config options are grouped by section. Mouse over the option name for the option documentation. We provide more info, recommendations, and references alongside each option.</p>
+
+        <form id="configForm">
+            <!-- Config sections will be dynamically generated here -->
+            <div id="configSections"></div>
+
+            <!-- Alias Section -->
+            <section class="config-section">
+                <h2>[alias]</h2>
+                <div id="aliasesContainer">
+                    <div class="alias-item">
+                        <input type="text" class="alias-name" placeholder="Alias name" data-index="0">
+                        <span>=</span>
+                        <input type="text" class="alias-value" placeholder="Git command" data-index="0">
+                        <button type="button" class="btn-remove" onclick="removeAlias(this)">×</button>
+                    </div>
+                </div>
+                <button type="button" id="addAliasBtn" class="btn-add">+ Add Alias</button>
+            </section>
+        </form>
+
+        <section class="output-section">
+            <h2>Generated Config</h2>
+            <pre id="output"><code></code></pre>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
