@@ -37,16 +37,23 @@
 
             <!-- Alias Section -->
             <section class="config-section">
-                <h2>[alias]</h2>
-                <div id="aliasesContainer">
+                <div class="section-header">
+                    <h2>[alias]</h2>
+                    <button type="button" class="section-toggle" aria-label="Toggle section">
+                        <span class="toggle-icon">−</span>
+                    </button>
+                </div>
+                <div class="section-content">
+                    <div id="aliasesContainer">
                     <div class="alias-item">
                         <input type="text" class="alias-name" placeholder="Alias name" data-index="0">
                         <span>=</span>
                         <input type="text" class="alias-value" placeholder="Git command" data-index="0">
                         <button type="button" class="btn-remove" onclick="removeAlias(this)">×</button>
                     </div>
+                    </div>
+                    <button type="button" id="addAliasBtn" class="btn-add">+ Add Alias</button>
                 </div>
-                <button type="button" id="addAliasBtn" class="btn-add">+ Add Alias</button>
             </section>
         </form>
 

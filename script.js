@@ -40,13 +40,28 @@ function generateForm() {
     for (const [section, options] of Object.entries(sections)) {
         const sectionEl = document.createElement('section');
         sectionEl.className = 'config-section';
-        sectionEl.innerHTML = `<h2>[${section}]</h2>`;
+        
+        // Create header with toggle button
+        const header = document.createElement('div');
+        header.className = 'section-header';
+        header.innerHTML = `
+            <h2>[${section}]</h2>
+            <button type="button" class="section-toggle" aria-label="Toggle section">
+                <span class="toggle-icon">−</span>
+            </button>
+        `;
+        sectionEl.appendChild(header);
+        
+        // Create content wrapper
+        const contentWrapper = document.createElement('div');
+        contentWrapper.className = 'section-content';
 
         options.forEach(option => {
             const formGroup = createFormGroup(option);
-            sectionEl.appendChild(formGroup);
+            contentWrapper.appendChild(formGroup);
         });
 
+        sectionEl.appendChild(contentWrapper);
         container.appendChild(sectionEl);
     }
 }
@@ -173,6 +188,13 @@ function initializeEventListeners() {
     document.getElementById('showDefaults').addEventListener('change', toggleShowDefaults);
     document.getElementById('clearBtn').addEventListener('click', clearAll);
     document.getElementById('copyBtn').addEventListener('click', copyConfig);
+    
+    // Section toggle buttons - use event delegation
+    document.getElementById('configForm').addEventListener('click', (e) => {
+        if (e.target.closest('.section-toggle')) {
+            toggleSection(e);
+        }
+    });
 }
 
 // Drag and drop handlers
@@ -573,6 +595,26 @@ function removeAlias(button) {
     const aliasItem = button.closest('.alias-item');
     aliasItem.remove();
     updateOutput();
+}
+
+// Toggle section collapse/expand
+function toggleSection(e) {
+    const button = e.target.closest('.section-toggle');
+    if (!button) return;
+    
+    const section = button.closest('.config-section');
+    const content = section.querySelector('.section-content');
+    const icon = button.querySelector('.toggle-icon');
+    
+    if (section.classList.contains('collapsed')) {
+        section.classList.remove('collapsed');
+        content.style.display = '';
+        icon.textContent = '−';
+    } else {
+        section.classList.add('collapsed');
+        content.style.display = 'none';
+        icon.textContent = '+';
+    }
 }
 
 // Copy config to clipboard

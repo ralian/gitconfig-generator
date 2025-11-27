@@ -154,10 +154,52 @@ header code {
     border-right: 1px solid #0d279c;
 }
 
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
 .config-section h2 {
     color: #00177c;
-    margin-bottom: 20px;
+    margin: 0;
     font-size: 1.5em;
+    flex: 1;
+}
+
+.section-toggle {
+    background: transparent;
+    border: 2px solid #00177c;
+    color: #00177c;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+.section-toggle:hover {
+    background: #00177c;
+    color: white;
+}
+
+.toggle-icon {
+    display: inline-block;
+    user-select: none;
+}
+
+.config-section.collapsed .section-content {
+    display: none;
 }
 
 .form-group {
