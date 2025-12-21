@@ -1,0 +1,33 @@
+[user]
+	name = "My Name"
+	email = my_email@example.com
+
+[push]
+	autoSetupRemote = true
+
+[remote]
+	default = origin
+
+[init]
+	default-branch = main
+
+[core]
+	excludesfile = ~/.gitignore_global
+
+[color "diff"]
+	old = 125
+	new = 48
+	context = 7
+
+[color "status"]
+	header = 39
+	added = 36
+	changed = 38
+	untracked = 7
+	branch = 120
+	nobranch = 124
+	unmerged = 110
+
+[alias]
+	nuke = "!git reset --hard; git clean -fd"
+	lol = "log --oneline"

@@ -29,6 +29,33 @@ async function loadTerminalColors() {
     terminalColors = await response.json();
 }
 
+// Load preferences from .gitconfig_preferences file
+async function loadPreferences() {
+    try {
+        const response = await fetch('.gitconfig_preferences');
+        if (!response.ok) {
+            throw new Error(`Failed to load preferences: ${response.status} ${response.statusText}`);
+        }
+        const content = await response.text();
+        const config = parseGitConfig(content);
+        populateForm(config);
+        updateOutput();
+        
+        // Show success feedback
+        const btn = document.getElementById('loadPreferencesBtn');
+        const originalText = btn.textContent;
+        btn.textContent = '✓ Loaded!';
+        btn.style.background = '#4caf50';
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.style.background = '';
+        }, 2000);
+    } catch (error) {
+        console.error('Error loading preferences:', error);
+        alert('Error loading preferences: ' + error.message);
+    }
+}
+
 // Generate form from config options
 function generateForm() {
     const container = document.getElementById('configSections');
@@ -283,6 +310,7 @@ function initializeEventListeners() {
 
     // Controls
     document.getElementById('showDefaults').addEventListener('change', toggleShowDefaults);
+    document.getElementById('loadPreferencesBtn').addEventListener('click', loadPreferences);
     document.getElementById('clearBtn').addEventListener('click', clearAll);
     document.getElementById('copyBtn').addEventListener('click', copyConfig);
     

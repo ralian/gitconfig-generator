@@ -9,3 +9,8 @@ A static website for generating and customizing `.git/config` files.
     - `<repo>/.git/config` for per-repo options
 
 [View the site](https://ralian.github.io/gitconfig-generator/) on Github Pages.
+
+Todo:
+- Maintenance section
+- Add my default
+- Add a useful for client / useful for server filter

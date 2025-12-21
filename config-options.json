@@ -474,6 +474,15 @@
     "description": "Line ending style: 'lf' for LF, 'crlf' for CRLF, 'native' for platform default."
   },
   {
+    "section": "core",
+    "subsection": null,
+    "name": "excludesfile",
+    "displayName": "Global Excludes (gitignore)",
+    "type": "text",
+    "default": null,
+    "description": "Path to a file containing patterns to exclude from all repositories."
+  },
+  {
     "section": "init",
     "subsection": null,
     "name": "defaultBranch",
