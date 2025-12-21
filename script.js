@@ -32,7 +32,7 @@ async function loadTerminalColors() {
 // Load preferences from .gitconfig_preferences file
 async function loadPreferences() {
     try {
-        const response = await fetch('.gitconfig_preferences');
+        const response = await fetch('https://raw.githubusercontent.com/ralian/gitconfig-generator/refs/heads/main/.gitconfig_preferences');
         if (!response.ok) {
             throw new Error(`Failed to load preferences: ${response.status} ${response.statusText}`);
         }
