@@ -135,7 +135,12 @@ function createFormGroup(option) {
     checkbox.dataset.configName = option.configName || option.name;
 
     const labelText = document.createElement('span');
-    labelText.textContent = option.displayName;
+    // Append version if available
+    let displayText = option.displayName;
+    if (option.version) {
+        displayText += ` (v${option.version})`;
+    }
+    labelText.textContent = displayText;
     
     // Add description tooltip
     if (option.description) {
